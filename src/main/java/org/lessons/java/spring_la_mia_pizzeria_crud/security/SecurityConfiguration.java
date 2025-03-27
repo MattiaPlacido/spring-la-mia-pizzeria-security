@@ -16,8 +16,6 @@ public class SecurityConfiguration {
     @Bean
     @SuppressWarnings("removal")
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // CONTROLLARE BENE CHE PERMESSI HA L'UTENTE E MIGLIORARLO IN CASO, IN
-        // PARTICOLARE VERIFICARE NON POSSA USARE NESSUNA DELETE
         http.authorizeHttpRequests()
                 .requestMatchers("/pizzas/create", "/pizzas/edit/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/pizzas/**").hasAuthority("ADMIN")
@@ -25,9 +23,8 @@ public class SecurityConfiguration {
                 .hasAuthority("ADMIN")
                 .requestMatchers("/ingredients/create", "/ingredients/edit/**", "/ingredients/delete/**")
                 .hasAuthority("ADMIN")
-                .requestMatchers("/pizzas", "/pizzas/**").hasAnyAuthority("USER", "ADMIN")
-                .requestMatchers("/**")
-                .permitAll().and().formLogin().and().logout().and().exceptionHandling();
+                .requestMatchers("/**").hasAnyAuthority("USER", "ADMIN")
+                .and().formLogin().and().logout().and().exceptionHandling();
 
         return http.build();
     }
