@@ -32,7 +32,7 @@
                         </div>
                         <p class="card-text">[[*{description}]]</p>
                     </div>
-                    <div class="container pb-3 d-flex justify-content-around">
+                    <div class="container pb-3 d-flex justify-content-around" sec:authorize="hasAuthority('ADMIN')">
                         <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-primary">Update</a>
 
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"

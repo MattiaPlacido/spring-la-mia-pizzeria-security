@@ -12,7 +12,7 @@
     <div class="container pt-3">
 
 
-        <div class="d-flex justify-content-center m-3">
+        <div class="d-flex justify-content-center m-3" sec:authorize="hasAuthority('ADMIN')">
 
             <a class="btn btn-success mx-auto" th:href="@{/ingredients/create}">Add a new ingredient</a>
         </div>
@@ -37,7 +37,7 @@
                             </a></td>
                         <td>[[*{description}]]</td>
                         <td>[[*{pizzas.size()}]]</td>
-                        <td class="d-flex gap-2">
+                        <td class="d-flex gap-2" sec:authorize="hasAuthority('ADMIN')">
                             <a class="btn btn-success btn-sm" th:href="@{/ingredients/edit/{id}(id=*{id})}">Update</a>
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 th:data-bs-target="'#delete-modal-' + *{id}">

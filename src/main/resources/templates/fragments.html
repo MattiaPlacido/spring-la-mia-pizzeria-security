@@ -18,13 +18,18 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/pizzas}">View Pizzas</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                             <a class="nav-link" th:href="@{/pizzas/create}">Add a Pizza</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/ingredients}">View Ingredients</a>
                         </li>
                     </ul>
+                </div>
+                <div class="text-white d-flex flex-column me-3">
+                    <p> Hi <span sec:authentication="name" class="fw-bold"></span></p>
+                    <p> Roles : <span sec:authentication="principal.authorities" class="fw-bold"></span></p>
+                    <p> <a href="/logout" class="fw-bold text-white">Sign out</a></p>
                 </div>
             </div>
         </nav>
