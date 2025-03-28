@@ -23,6 +23,7 @@ public class SecurityConfiguration {
                 .hasAuthority("ADMIN")
                 .requestMatchers("/ingredients/create", "/ingredients/edit/**", "/ingredients/delete/**")
                 .hasAuthority("ADMIN")
+                .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/**").hasAnyAuthority("USER", "ADMIN")
                 .and().formLogin().and().logout().and().exceptionHandling();
 
